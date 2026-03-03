@@ -1,18 +1,17 @@
 from fastapi import FastAPI
+from config import get_settings
+
+settings = get_settings()
 
 app = FastAPI(
-    title="AI Code Review Backend",
-    version="1.0.0"
+    title=settings.app_name,
+    version=settings.app_version
 )
 
 @app.get("/health")
 async def health_check():
     return {
         "status": "healthy",
-        "python_version": "3.11.9",
-        "module": "review-module"
+        "app": settings.app_name,
+        "version": settings.app_version
     }
-
-@app.get("/")
-async def root():
-    return {"message": "AI Code Review Backend Running"}
