@@ -1,0 +1,12 @@
+psycopg2-binary
+pydantic
+email-validator
+python-jose
+passlib[bcrypt]
+astroid
+pylint
+openai
+pytest
+httpx
+celery
+redis
