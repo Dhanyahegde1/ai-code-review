@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from config import get_settings
+from core.config import get_settings
 from pydantic import BaseModel
 from api.v1.routes_review import router as review_router
-from config import get_settings
+
 
 settings = get_settings()
 
