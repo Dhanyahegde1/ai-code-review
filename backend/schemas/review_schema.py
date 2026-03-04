@@ -6,5 +6,5 @@ class CodeReviewRequest(BaseModel):
 
 
 class CodeReviewResponse(BaseModel):
-    message: str
     status: str
+    message: str

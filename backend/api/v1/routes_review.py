@@ -5,7 +5,12 @@ from core.logging import logger
 router = APIRouter()
 
 
-@router.post("/review", response_model=CodeReviewResponse)
+@router.post(
+    "/review",
+    response_model=CodeReviewResponse,
+    summary="Submit code for AI review",
+    description="Accepts a code snippet and prepares it for analysis by the code analyzer and AI engine."
+)
 async def review_code(request: CodeReviewRequest):
 
     logger.info("Received code review request")
@@ -15,18 +20,18 @@ async def review_code(request: CodeReviewRequest):
 
         logger.info("Code snippet received for analysis")
 
-        # Placeholder for Dev C modules
-        logger.info("Waiting for analyzer and AI modules")
+        # Placeholder until Dev C integrates analyzer
+        logger.info("Analyzer and AI modules not integrated yet")
 
         return {
-            "message": "Review endpoint ready for analyzer integration",
-            "status": "waiting_for_dev_c_modules"
+            "status": "success",
+            "message": "Review endpoint ready. Waiting for analyzer integration."
         }
 
     except Exception as e:
         logger.error(f"Code review failed: {str(e)}")
 
         return {
-            "message": "Error processing code review",
-            "status": "failed"
+            "status": "error",
+            "message": "Failed to process code review request"
         }
