@@ -1,3 +1,7 @@
+from workers.constants import MAX_IF_COUNT, DANGEROUS_FUNCTIONS
+from workers.parser import count_keyword, contains_any
+from workers.helpers import check_syntax
+
 def analyze_code(code: str):
     result = {
         "syntax_errors": [],
@@ -5,32 +9,27 @@ def analyze_code(code: str):
         "complexity_issues": [],
         "security_issues": []
     }
-
-    try:
-        compile(code, "<string>", "exec")
-    except SyntaxError as e:
-        result["syntax_errors"].append({
-            "line": e.lineno,
-            "message": str(e)
-        })
+     # Syntax check using helper
+    syntax_error = check_syntax(code)
+    if syntax_error:
+        result["syntax_errors"].append(syntax_error)
         return result
 
-    if "eval(" in code:
+    # Security checks using constants + parser
+    dangerous_found = contains_any(code, DANGEROUS_FUNCTIONS)
+    for item in dangerous_found:
         result["security_issues"].append({
-            "issue": "Use of eval() is unsafe"
+            "issue": f"Use of {item} is unsafe"
         })
 
-    if "exec(" in code:
-        result["security_issues"].append({
-            "issue": "Use of exec() is unsafe"
-        })
-
+    # Style checks
     if "print(" in code:
         result["style_issues"].append({
             "issue": "Avoid print statements in production code"
         })
 
-    if code.count("if") > 10:
+    # Complexity check using constant
+    if count_keyword(code, "if") > MAX_IF_COUNT:
         result["complexity_issues"].append({
             "issue": "Too many conditional statements"
         })

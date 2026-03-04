@@ -1,3 +1,6 @@
+#rule_based ai
+import subprocess
+
 def rule_based_ai(analysis_result):
     suggestions = []
 
@@ -17,3 +20,16 @@ def rule_based_ai(analysis_result):
         suggestions.append("Code looks clean. No major issues found.")
 
     return suggestions
+
+# open-source llm for suggestions
+def llm_suggestions(code: str) -> str:
+    prompt = f"Review this Python code and suggest improvements:\n\n{code}"
+
+    result = subprocess.run(
+        ["ollama", "run", "phi3:mini"],
+        input=prompt,
+        text=True,
+        capture_output=True
+    )
+
+    return result.stdout.strip()
