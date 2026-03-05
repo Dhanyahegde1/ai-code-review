@@ -1,5 +1,7 @@
 #rule_based ai
 import subprocess
+import time
+from datetime import datetime
 
 def rule_based_ai(analysis_result):
     suggestions = []
@@ -33,3 +35,31 @@ def llm_suggestions(code: str) -> str:
     )
 
     return result.stdout.strip()
+
+# adding timestamp for each ai-models
+def run_ai_engine(code, analysis_result):
+
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    start_total = time.time()
+
+    # Rule based timing
+    start_rule = time.time()
+    rule_suggestions = rule_based_ai(analysis_result)
+    rule_time = time.time() - start_rule
+
+    # LLM timing
+    start_llm = time.time()
+    llm_result = llm_suggestions(code)
+    llm_time = time.time() - start_llm
+
+    total_time = time.time() - start_total
+
+    return {
+        "timestamp": timestamp,
+        "rule_based_time": round(rule_time, 3),
+        "llm_time": round(llm_time, 3),
+        "total_time": round(total_time, 3),
+        "rule_based_suggestions": rule_suggestions,
+        "llm_suggestions": llm_result
+    }
