@@ -10,53 +10,84 @@ input {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background: linear-gradient(90deg,#7b2cbf,#9d4edd);
   color: white;
   border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
+
+button:hover{
+  background: linear-gradient(90deg,#5a189a,#7b2cbf);
+}
+
+/* Background Theme */
+
 body{
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg,#4facfe,#00f2fe);
+  background: linear-gradient(
+      135deg,
+      #0f051d,
+      #240046,
+      #3c096c,
+      #10002b,
+      #000000
+  );
+  min-height:100vh;
   margin:0;
   padding:0;
 }
 
+/* Login / Register Card */
+
 .auth-container{
   width:350px;
   margin:120px auto;
-  background:white;
+  background: linear-gradient(145deg,#111,#1b0f2e);
   padding:30px;
-  border-radius:10px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  border-radius:12px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.7);
   text-align:center;
+  border:1px solid #5a189a;
 }
+
+/* Heading */
 
 .auth-container h2{
   margin-bottom:20px;
-  color:#333;
+  color:#e0aaff;
+  letter-spacing:1px;
 }
+
+/* Inputs */
 
 .auth-container input{
   width:90%;
   padding:10px;
   margin-top:10px;
   border-radius:6px;
-  border:1px solid #ccc;
+  border:1px solid #5a189a;
   font-size:14px;
+  background: linear-gradient(145deg,#1a1a1a,#0f0f0f);
+  color:white;
 }
+
+/* Input focus */
 
 .auth-container input:focus{
   outline:none;
-  border-color:#4facfe;
-  box-shadow:0 0 5px rgba(79,172,254,0.5);
+  border-color:#c77dff;
+  box-shadow:0 0 8px rgba(199,125,255,0.8);
 }
+
+/* Buttons */
 
 .auth-container button{
   width:95%;
   padding:10px;
   margin-top:15px;
   border:none;
-  background:#4facfe;
+  background: linear-gradient(90deg,#7b2cbf,#c77dff);
   color:white;
   font-size:16px;
   border-radius:6px;
@@ -65,10 +96,12 @@ body{
 }
 
 .auth-container button:hover{
-  background:#007bff;
+  background: linear-gradient(90deg,#5a189a,#9d4edd);
 }
+
+/* Error text */
 
 .auth-container p{
   margin-top:10px;
-  color:red;
+  color:#ff4d6d;
 }
