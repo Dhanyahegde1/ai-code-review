@@ -28,11 +28,13 @@ def llm_suggestions(code: str) -> str:
     prompt = f"Review this Python code and suggest improvements:\n\n{code}"
 
     result = subprocess.run(
-        ["ollama", "run", "phi3:mini"],
-        input=prompt,
-        text=True,
-        capture_output=True
-    )
+    ["ollama", "run", "phi3:mini"],
+    input=prompt,
+    text=True,
+    capture_output=True,
+    encoding="utf-8",
+    errors="replace"
+)
 
     return result.stdout.strip()
 
@@ -57,9 +59,9 @@ def run_ai_engine(code, analysis_result):
 
     return {
         "timestamp": timestamp,
-        "rule_based_time": round(rule_time, 3),
-        "llm_time": round(llm_time, 3),
-        "total_time": round(total_time, 3),
+        "rule_based_time_in_ms": round(rule_time * 1000, 3),
+        "llm_time_in_sec": round(llm_time, 3),
+        "total_time_in_sec": round(total_time, 3),
         "rule_based_suggestions": rule_suggestions,
         "llm_suggestions": llm_result
     }

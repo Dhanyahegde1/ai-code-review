@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import List
 
 # Schema for the incoming request body
 class CodeReviewRequest(BaseModel):
@@ -10,3 +10,10 @@ class CodeReviewRequest(BaseModel):
 class CodeReviewResponse(BaseModel):
     status: str
     message: str
+    timestamp: str
+    rule_based_time: float
+    llm_time: float
+    total_time: float
+
+    rule_based_suggestions: List[str]
+    llm_suggestions: str
