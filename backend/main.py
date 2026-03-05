@@ -1,8 +1,8 @@
-from fastapi import FastAPIs
-from core.config import get_settings
+from fastapi import FastAPI
+from backend.core.config import get_settings
 from pydantic import BaseModel
 # Import the review API router created in routes_review.py
-from api.v1.routes_review import router as review_router
+from backend.api.v1.routes_review import router as review_router
 
 
 # Load application settings 

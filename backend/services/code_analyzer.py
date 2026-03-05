@@ -1,6 +1,6 @@
-from workers.constants import MAX_IF_COUNT, DANGEROUS_FUNCTIONS
-from workers.parser import count_keyword, contains_any
-from workers.helpers import check_syntax
+from backend.workers.constants import MAX_IF_COUNT, DANGEROUS_FUNCTIONS
+from backend.workers.parser import count_keyword, contains_any
+from backend.workers.helpers import check_syntax
 
 def analyze_code(code: str):
     result = {
