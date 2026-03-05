@@ -1,6 +1,7 @@
+
 from fastapi import Depends
 from sqlalchemy.orm import Session
-from database.db import SessionLocal
+from backend.database.db import SessionLocal
 
 
 # function to provide db access
