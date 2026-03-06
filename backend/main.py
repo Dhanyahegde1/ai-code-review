@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.api.v1.routes_auth import router as auth_router
 from backend.api.v1.routes_user import router as user_router
 
+
 # Load application settings 
 settings = get_settings()
 

@@ -59,7 +59,7 @@ def run_ai_engine(code, analysis_result):
 
     return {
         "timestamp": timestamp,
-        "rule_based_time_in_ms": round(rule_time * 1000, 3),
+        "rule_based_time_in_sec": round(rule_time * 1000, 2),
         "llm_time_in_sec": round(llm_time, 3),
         "total_time_in_sec": round(total_time, 3),
         "rule_based_suggestions": rule_suggestions,

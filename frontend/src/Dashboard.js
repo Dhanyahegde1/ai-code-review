@@ -7,15 +7,42 @@ function Dashboard() {
 
   const [code, setCode] = useState("");
   const [review, setReview] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
 
-  const handleSubmit = () => {
-    setReview("AI Review will appear here...");
-  };
+  const handleSubmit = async () => {
+
+  setLoading(true);
+  setReview("");
+
+  try {
+
+    const response = await fetch("http://127.0.0.1:8000/review/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        code: code
+      })
+    });
+
+    const data = await response.json();
+
+    setReview(JSON.stringify(data, null, 2));
+
+  } catch (error) {
+
+    setReview("Error connecting to AI Review API");
+
+  }
+
+  setLoading(false);
+};
 
   return (
 
@@ -42,6 +69,7 @@ function Dashboard() {
         <div style={{
           flex:1,
           display:"flex",
+          width: "50%",
           flexDirection:"column",
           padding:"20px",
           border:"1px solid #5a189a",
@@ -50,7 +78,32 @@ function Dashboard() {
           color:"white"
         }}>
 
-          <h3 style={{color:"white", fontFamily:"times", fontSize:"20px"}}>Enter Your Code</h3>
+          <div style={{
+  display:"flex",
+  justifyContent:"space-between",
+  alignItems:"center"
+}}>
+
+  <h3 style={{color:"white", fontFamily:"times", fontSize:"20px"}}>
+    Enter Your Code
+  </h3>
+
+  <button
+    onClick={handleSubmit}
+    style={{
+      padding:"6px 14px",
+      background:"#691fb2",
+      color:"white",
+      border:"none",
+      borderRadius:"6px",
+      cursor:"pointer",
+      fontSize:"20px"
+    }}
+  >
+    Submit
+  </button>
+
+</div>
 
           <textarea
             placeholder="Paste your code here..."
@@ -60,6 +113,8 @@ function Dashboard() {
               flex:1,
               padding:"10px",
               marginTop:"10px",
+              width: "100%",
+              height: "300px",
               resize:"none",
               backgroundColor:"#130125",
               color:"white",
@@ -69,26 +124,15 @@ function Dashboard() {
 
           <br/>
 
-          <button
-            onClick={handleSubmit}
-            style={{
-              padding:"10px",
-              background:"#38046c",
-              color:"white",
-              border:"none",
-              borderRadius:"6px",
-              cursor:"pointer"
-            }}
-          >
-            Submit Code
-          </button>
-
+          
         </div>
 
         {/* RIGHT PANEL */}
         <div style={{
           flex:1,
           display:"flex",
+          width: "50%",
+          overflow: "auto",
           flexDirection:"column",
           padding:"20px",
           border:"1px solid #5a189a",
@@ -96,19 +140,29 @@ function Dashboard() {
           backgroundColor:"#150424",
           color:"white"
         }}>
-
+        
           <h3 style={{color:"white", fontFamily:"times", fontSize:"20px"}}>AI Review Output</h3>
 
+          
           <div style={{
-            flex:1,
-            marginTop:"10px",
-            backgroundColor:"#130125",
-            padding:"15px",
-            borderRadius:"5px",
-            overflow:"auto"
-          }}>
-            {review || "Review results will appear here"}
-          </div>
+  flex:1,
+  marginTop:"10px",
+  backgroundColor:"#130125",
+  padding:"15px",
+  borderRadius:"5px",
+  overflowY:"auto",
+  overflowX:"hidden",
+  whiteSpace:"pre-wrap",
+  wordWrap:"break-word"
+}}>
+            {loading ? (
+              <p>Loading AI Review...</p>
+          ) : (
+            <pre style={{whiteSpace:"pre-wrap", wordBreak:"break-word"}}>
+  {review || "Review results will appear here"}
+</pre>
+          )}
+        </div>
 
         </div>
 
