@@ -1,0 +1,107 @@
+.App {
+  text-align: center;
+  margin-top: 100px;
+}
+
+input {
+  padding: 10px;
+  width: 250px;
+}
+
+button {
+  padding: 10px 20px;
+  background: linear-gradient(90deg,#7b2cbf,#9d4edd);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover{
+  background: linear-gradient(90deg,#5a189a,#7b2cbf);
+}
+
+/* Background Theme */
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+      135deg,
+      #0f051d,
+      #240046,
+      #3c096c,
+      #10002b,
+      #000000
+  );
+  min-height:100vh;
+  margin:0;
+  padding:0;
+}
+
+/* Login / Register Card */
+
+.auth-container{
+  width:350px;
+  margin:120px auto;
+  background: linear-gradient(145deg,#111,#1b0f2e);
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.7);
+  text-align:center;
+  border:1px solid #5a189a;
+}
+
+/* Heading */
+
+.auth-container h2{
+  margin-bottom:20px;
+  color:#e0aaff;
+  letter-spacing:1px;
+}
+
+/* Inputs */
+
+.auth-container input{
+  width:90%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:6px;
+  border:1px solid #5a189a;
+  font-size:14px;
+  background: linear-gradient(145deg,#1a1a1a,#0f0f0f);
+  color:white;
+}
+
+/* Input focus */
+
+.auth-container input:focus{
+  outline:none;
+  border-color:#c77dff;
+  box-shadow:0 0 8px rgba(199,125,255,0.8);
+}
+
+/* Buttons */
+
+.auth-container button{
+  width:95%;
+  padding:10px;
+  margin-top:15px;
+  border:none;
+  background: linear-gradient(90deg,#7b2cbf,#c77dff);
+  color:white;
+  font-size:16px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.auth-container button:hover{
+  background: linear-gradient(90deg,#5a189a,#9d4edd);
+}
+
+/* Error text */
+
+.auth-container p{
+  margin-top:10px;
+  color:#ff4d6d;
+}
